@@ -1,0 +1,3 @@
+service2:
+  min: 100
+  max: 900
