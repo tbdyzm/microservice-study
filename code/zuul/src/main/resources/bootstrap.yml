@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: prod
+  application:
+    name: zuul-server
+  cloud:
+    config:
+      lable: master
+      profile: prod
+      discovery:
+        enabled: true
+        service-id: config-server
+
+---
+spring:
+  profiles: dev
+  application:
+    name: zuul-server
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server

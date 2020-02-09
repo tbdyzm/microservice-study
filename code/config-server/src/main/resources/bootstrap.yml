@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tbdyzm/microservice-study # Github存储外部配置地址
+          username: # Github账号
+          password: # Github密码
+          default-label: master # Github分支
+          search-paths: config # 外部配置所属目录
