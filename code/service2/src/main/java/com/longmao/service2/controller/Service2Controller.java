@@ -3,6 +3,8 @@ package com.longmao.service2.controller;
 import com.longmao.service2.dto.Service1Entity;
 import com.longmao.service2.dto.Service2Entity;
 import com.longmao.service2.proxy.Service1Proxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import java.util.Map;
 @RestController
 @RefreshScope
 public class Service2Controller {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private Service2Entity service2Entity;
     @Autowired
@@ -34,6 +37,7 @@ public class Service2Controller {
         if (service2Entity.getFifth() > service1Entity.getMin() && service2Entity.getFifth() < service1Entity.getMax())
             response.put("fifth", service2Entity.getFifth());
         response.put("port", service1Entity.getPort());
+        logger.info("{}", response);
         return response;
     }
 }

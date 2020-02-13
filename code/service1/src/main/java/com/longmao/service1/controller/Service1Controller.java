@@ -1,6 +1,8 @@
 package com.longmao.service1.controller;
 
 import com.longmao.service1.dto.Service1Entity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 @EnableDiscoveryClient
 public class Service1Controller {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private Environment environment;
     @Autowired
@@ -20,6 +23,7 @@ public class Service1Controller {
     @GetMapping("/service1")
     public Service1Entity getMinAndMax(){
         service1Entity.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+        logger.info("{}", service1Entity);
         return service1Entity;
     }
 }
